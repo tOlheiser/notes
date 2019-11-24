@@ -11,7 +11,7 @@ export function fetchPopularRepos (language) {
 
   // making a request
   return fetch(endpoint)
-  // taking the returned response and formattng it into json
+    // fetch returns a promise, and we take the response and format it to JSON.
     .then((res) => res.json())
     .then((data) => {
       // if there are no items, something went wrong.
@@ -32,6 +32,8 @@ updateLanguage(selectedLanguage) is a click event to select and display a langua
 
 ```javascript
 updateLanguage (selectedLanguage) {
+    /* if error AND repos is null, that means it is loading the repos.
+    If the user has selected javascript, but they want Ruby, you'd first set repos to null to show you're loading the Ruby repos. */
     this.setState({
       selectedLanguage,
       error: null,
@@ -46,6 +48,7 @@ updateLanguage (selectedLanguage) {
         repos,
         error: null,
       }))
+      // if there was an error, catch it, then update error in state.
       .catch(() => {
         console.warn('Error fetching repos: ', error)
 
@@ -81,6 +84,7 @@ updateLanguage (selectedLanguage) {
     this.setState({
       selectedLanguage,
       error: null
+      // removed the 'repos: null' line, because it interferes with caching.
     })
 
     /* Only fetch the repos IF the selectedLanguage key doesn't exist in the repos object. */
@@ -88,11 +92,14 @@ updateLanguage (selectedLanguage) {
         fetchPopularRepos(selectedLanguage)
         // returns a promise, 'data'
             .then((data) => {
-                //updating the state based on the previous state.
+                // updating the state based on the previous state.
                 // Setting data as a property on the repos object.
                 this.setState(({ repos }) => ({
                     repos: {
-                        repos,
+                        ...repos, /* use of spread operator. takes all previous properties, and then lets us merge our own data on top of that. */
+
+                        // [selectedLanguage] to evaluate the key.
+                        // 'data' is the data returned from fetchPopularRepos.
                         [selectedLanguage]: data
                     }
                 }))
@@ -105,9 +112,17 @@ updateLanguage (selectedLanguage) {
             })
         })
     }
+```
 
+**Updating the 'isLoading() function**
+Because we are now caching the repositories, we need to determine if the repository has been cached or not. We'll then display 'Loading' if the language's key doesn't exist on the repos object.
 
-  }
+```javascript
+isLoading() {
+    const { selectedLanguage, repos, error } = this.state;
+
+    return !repos[selectedLanguage] && error === null;
+}
 ```
 
 ### Understanding destructuring in the context of setState
