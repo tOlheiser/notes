@@ -198,6 +198,3 @@ function ReposGrid ({ repos }) {
 // The function call
 {repos[selectedLanguage] && <ReposGrid repos={repos[selectedLanguage]} />}
 ```
-
-## Results View
-
