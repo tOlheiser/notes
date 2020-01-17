@@ -174,3 +174,50 @@ Since this 2nd example is not wrapped in a provider, it takes MyContext.Provider
     </MyContext.Consumer>
 </React.Fragment>// Adam likes to pop balloons
 ```
+
+## Notable Pattern from Tyler McGinnis
+
+Within his contexts folder:
+```javascript
+// theme.js
+
+import React from 'react'
+
+// creates a context and immediate destructures it into two variables.
+const { Consumer, Provider } = React.createContext();
+
+// exports said variables as recognizable names
+export const ThemeConsumer = Consumer
+export const ThemeProvider = Provider
+```
+
+index.js file
+```javascript
+import { ThemeProvider } from './contexts/theme'
+
+class App extends React.Component {
+    constructor(props) {
+        super(props);
+        
+        this.state = {
+            theme: 'light',
+            toggleTheme: () => {
+                this.setState(( {theme} ) => ({
+                    theme: theme === 'light' ? 'dark' : 'light'
+                }))
+            }
+        }
+    }
+    
+    render() {
+        return (
+            <ThemeProvider value={this.state}>
+                <div className='container'>
+                    <Battle />
+                </div>
+            </ThemeProvider>
+        )
+    }
+}
+
+```
