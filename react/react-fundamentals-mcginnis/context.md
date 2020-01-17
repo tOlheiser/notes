@@ -147,3 +147,30 @@ export default function Blog() {
     )
 }
 ```
+
+## Default Value
+
+Firstly, define the context with a value.
+```javascript
+const MyContext = React.createContext('balloons');
+```
+
+**Rendering without the default value**
+```javascript
+<MyContext.Provider value="zits">
+    <MyContext.Consumer>
+        <p>Adam likes to pop {word}</p> 
+    </MyContext.Consumer>
+</MyContext.Provider> // Adam likes to pop zits
+```
+
+Since this 2nd example is not wrapped in a provider, it takes MyContext.Provider's default value.
+
+**Rendering with a default value**
+```javascript
+<React.Fragment>
+    <MyContext.Consumer>
+        <p>Adam likes to pop {word}</p> 
+    </MyContext.Consumer>
+</React.Fragment>// Adam likes to pop balloons
+```
