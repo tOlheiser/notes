@@ -96,3 +96,54 @@ export default function Blog () {
   )
 }
 ```
+
+## Updating Context State
+
+In the example above, the whole app was wrapped in 'LocaleContext.Provider', and any component in the application tree could get access to locale by using LocaleContext's consumer. Instead of just getting access to 'locale', we'd also like to toggle (from en -> es and back) from anywhere inside of the component tree. 
+
+Solution? Pass a reference to the state object. 
+
+```javascript
+class App extends React.Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            locale: 'en',
+            toggleLocale: () => {
+                this.setState(({locale}) => ({
+                    locale: locale === "en" ? "es" : "en"
+                }));
+            }
+        }
+    }
+    render() {
+        return (
+            <LocaleContext.Provider value={this.state}>
+                <Home />
+            </LocaleContext.Provider>
+        )
+    }
+}
+```
+
+Now, anywhere inside of our component tree, we can get access to the locale value or the ability to change it via toggleLocale.
+
+```javascript
+// Blog.js
+import React from 'react'
+import LocaleContext from './LocaleContext'
+
+export default function Blog() {
+    return(
+        <LocaleContext.Consumer>
+            {({ locale, toggleLocale }) => (
+                <React.Fragment>
+                    <Nav toggleLocale={toggleLocale} />
+                    <Posts locale={locale} />
+                </React.Fragment>
+            )}
+        </LocaleContext.Consumer>
+    )
+}
+```
