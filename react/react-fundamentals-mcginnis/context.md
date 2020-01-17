@@ -65,3 +65,34 @@ class App extends React.Component {
 export default App
 ```
 
+## Consumer
+
+The whole point of the consumer component is that it allows you to get access to the data that was passed as a value prop to the Context's Provider component. To get access, Consumer uses a render prop.
+
+```javascript
+<MyContext.Consumer>
+  {(data) => {
+    return (
+      <h1>
+        The "value" prop passed to "Provider" was {data}
+      </h1>
+    )
+  }}
+</MyContext.Consumer>
+```
+
+Since this.state.locale was passed as a prop to LocaleContext.Provider, you can get access to it by passing LocaleContext.Consumer a render prop.
+
+```javascript
+// Blog.js
+import React from 'react'
+import LocaleContext from './LocaleContext'
+
+export default function Blog () {
+  return (
+    <LocaleContext.Consumer>
+      {(locale) => <Posts locale={locale} />}
+    </LocaleContext.Consumer>
+  )
+}
+```
