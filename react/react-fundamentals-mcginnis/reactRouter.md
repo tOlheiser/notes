@@ -244,6 +244,10 @@ const NoMatch = ({ location }) => (
 Render a Route without specifying a path prop. **Doing this alone causes an issue.** Since this route has no path, it will always be rendered. Instead, we can wrap our Routes inside of **Switch**, which **only renders the first Route that matches**.
 
 ```javascript
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
+...
+
 <Switch>
     <Route path="/" exact component={Home}/>
     <Route path="/will-match" component={WillMatch}/>
