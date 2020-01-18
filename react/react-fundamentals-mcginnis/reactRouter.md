@@ -228,3 +228,25 @@ Instead of using a function that clears the users, we can just link back to the 
 </Link>
 ```
 
+## Rendering a 404 page
+
+**Create a catch-all component**
+This renders if no other route's match.
+
+```javascript
+const NoMatch = ({ location }) => (
+    <div>
+        <h3>No match for <code>{location.pathname}</code></h3>
+    </div>
+)
+```
+
+Render a Route without specifying a path prop. **Doing this alone causes an issue.** Since this route has no path, it will always be rendered. Instead, we can wrap our Routes inside of **Switch**, which **only renders the first Route that matches**.
+
+```javascript
+<Switch>
+    <Route path="/" exact component={Home}/>
+    <Route path="/will-match" component={WillMatch}/>
+    <Route component={NoMatch} />
+</Switch>
+```
