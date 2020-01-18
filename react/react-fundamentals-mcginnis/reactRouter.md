@@ -254,3 +254,8 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
     <Route component={NoMatch} />
 </Switch>
 ```
+
+Alternatively, you can render a 404 statement in-line.
+```javascript
+<Route render={() => <h1>404</h1>} />
+```
