@@ -3,7 +3,7 @@
 Steps to implementing React Router:
 
 **1. Install React Router into your application using NPM** 
-*npm install*react-router-dom*
+*npm install react-router-dom*
 
 **2. Import React Router into your index.js file**
 ```javascript
