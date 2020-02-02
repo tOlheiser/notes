@@ -1,7 +1,11 @@
 # Introducing Hooks
 
 ## Benefit of Hooks in React
-They allow you to track state within function components.
+Hooks allow you to reuse stateful logic without changing your component hierarchy.
+* Hooks let you use more of React's features without classes.
+* They allow you to track state within function components.
+* Hooks don't require you to learn complex functional or reactive programming techniques.
+* Code reusability and testing is much easier.
 
 ## Implementing Hooks:
 
@@ -45,3 +49,7 @@ function Example() {
   );
 }
 ```
+
+## Problems posed by class components
+* Classes can be a barrier to learning React. Understanding *this*, binding event handlers, and code being very verbose. 
+* Classes don't minify well and make hot reloading flaky and unreliable.
