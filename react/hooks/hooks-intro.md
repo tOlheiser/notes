@@ -13,6 +13,8 @@ Hooks allow you to reuse stateful logic without changing your component hierarch
 * Only call Hooks at the top level. Don't call Hooks inside loops, conditions, or nested functions. 
 * Only call Hooks from React function components - unless it is your own custom Hooks.
 
+**Note**: There is a linter plugin to enforce these rules automatically. [linter](https://reactjs.org/docs/hooks-rules.html#eslint-plugin)
+
 ## Implementing Hooks:
 
 1. Import useState
