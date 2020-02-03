@@ -116,5 +116,53 @@ useEffect(() => {
 }, [props.friend.id]); // Only re-subscribe if props.friend.id changes
 ```
 
-### When you want to run an effect only once (on mount and unmount)
+## When you want to run an effect only once (on mount and unmount)
 Pass an empty array '[]' as the second argument. This tells React that your effect doesn't depend on any values from props or state, so it never needs to re-run. 
+
+### How this Differs from componentDidMount
+
+They run at different times. They both run after the mount, but **useEffect runs after the paint has been committed to the screen**. So if you need to read from the DOM (such as the width of something), you'll get a flicker as it updates.
+
+**How do you achieve the same effect?**
+useLayoutEffect was designed to have the same timing as componentDidMount. 
+
+## Effect functions belong to different renders
+
+Take this example from Dan Abramov's Blog:
+```javascript
+// During first render
+function Counter() {
+  // ...
+  useEffect(
+    // Effect function from first render
+    () => {
+      document.title = `You clicked ${0} times`;
+    }
+  );
+  // ...
+}
+
+// After a click, our function is called again
+function Counter() {
+  // ...
+  useEffect(
+    // Effect function from second render
+    () => {
+      document.title = `You clicked ${1} times`;
+    }
+  );
+  // ...
+}
+
+// After another click, our function is called again
+function Counter() {
+  // ...
+  useEffect(
+    // Effect function from third render
+    () => {
+      document.title = `You clicked ${2} times`;
+    }
+  );
+  // ..
+}
+```
