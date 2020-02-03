@@ -94,6 +94,8 @@ componentDidUpdate(prevProps, prevState) {
 
 To achieve a similar effect with Effect Hooks, we pass an array as the second argument to useEffect. This array contains one or more values that you want to trigger a render if their values have changed. The array includes **all values from the component scope (such as props and state) that change over time and that are used by the effect**.
 
+In other words, every value referenced inside the effect function should also appear in the dependencies array. 
+
 ```javascript
 useEffect(() => {
     document.title = `You clicked ${count} times`;
