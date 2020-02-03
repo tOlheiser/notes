@@ -26,6 +26,22 @@ function ExampleWithManyStates() {
 ## Updating State
 In a class component, this.setState *merges* the data. In a hook, updating a state variable *replaces* the data. Whatever value is returned from the updater function is applied to its corresponding variable's state. 
 
+### Updating State Based on Previous State
+When calling your 'setState' function, you can pass a function to it. This function will receive the previous value, and return an updated value.
+
+```javascript
+<button onClick={() => setCount(prevCount => prevCount - 1)}>-</button>
+```
+
+### Replicating the 'merge' behaviour of class components:
+Spread operator is the hero here, but you could instead try 'useReducer', which is more suited for managing state objects that contain multiple sub-values.
+
+```javascript
+setState(prevState => {
+    return {...prevState, ...updatedValues};
+})
+```
+
 ## What does calling useState do?
 Calling useState declares a 'state variable', which allows us to 'preserve' some values between function calls. Variables normally disappear when the function exits but **state variables are preserved by React**.
 
