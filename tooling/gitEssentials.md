@@ -36,6 +36,7 @@ First navigate to the directory you want to make a repo in
 
 ### Staging a file
 *git add index.html*
+Alternatively, *git add -A* stages all of the changes.
 
 You can then check the status with 'git status', which will return: 'Changes to be committed" with new file: index.html. 
 
@@ -47,3 +48,9 @@ You can then check the status with 'git status', which will return: 'Changes to 
 
 ### Cloning a Repo
 *git clone https://github.com/LearnWebCode/welcome-to-git* 
+
+### Check to see where you're pushing to
+*git remote -v* - Will reveal the location of the repo. 
+
+### Setting where to push the changes
+*git remote set-url origin git@github.com:tOlheiser/travel-site.git*
