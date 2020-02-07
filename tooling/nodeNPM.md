@@ -63,3 +63,11 @@ With a package.json created, I ran the command: *npm install lodash*. It added t
 ```
 
 **Benefit of a grocery list:** Lets say we need to install all the dependencies for a project. When we run **npm install**, npm will **install all the dependencies specified in the package.json file**. 
+
+### A Note on Saving Packages
+
+**Difference between --save-dev and --save**
+--save-dev is used to save the package for development purpose. Example: unit tests, minification..
+--save is used to save the package required for the application to run.
+
+For a more detailed answer, look at the 2nd highest rated answer: [stackoverflow](https://stackoverflow.com/questions/22891211/what-is-the-difference-between-save-and-save-dev)
