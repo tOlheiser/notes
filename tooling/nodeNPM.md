@@ -53,7 +53,13 @@ IT would be time consuming to run to one store for one thing, and to another sto
 
 ### NPM DEMO
 
-*npm init -y* - Creates a package.json file, think of it as a grocery list.
+Starting off: **npm init -y**
+* Creates a package.json file, think of it as a grocery list.
+* Creates an empty 'node_modules' folder. 
+
+**package.json** - This contains the meta information for your project. List of packages, the versions your project depends on, as well as how to run your project.  
+
+**node_modules** - Whenever you install a package, the source code for that package will be stored inside this folder. Whenever you import a module into your file that isn't a file path, *import React from 'react'* your app will look inside the node_modules folder for the corresponding source code. 
 
 With a package.json created, I ran the command: *npm install lodash*. It added this to my package.json file:
 
