@@ -68,6 +68,12 @@ With a package.json created, I ran the command: *npm install lodash*. It added t
     "lodash": "^4.17.15"
 ```
 
+### Dependencies & npm install
+
+**dependencies** - These are packages your application needs to run. 
+**devDependencies** - Packages your application needs during development.
+**npm install** - Downloads all of the packages inside of both dependencies and devDependencies and places them inside of the node_modules folder. 
+
 **Benefit of a grocery list:** Lets say we need to install all the dependencies for a project. When we run **npm install**, npm will **install all the dependencies specified in the package.json file**. 
 
 ### A Note on Saving Packages
