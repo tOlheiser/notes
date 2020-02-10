@@ -51,8 +51,6 @@ NPM is a centralized place where developers share their code with the world.
 To use a grocery store analogy:
 IT would be time consuming to run to one store for one thing, and to another store for another thing, and so on. With a package manager, you can give your 'personal robot assistant' a grocery list, letting them do everything for you.
 
-### NPM DEMO
-
 Starting off: **npm init -y**
 * Creates a package.json file, think of it as a grocery list.
 * Creates an empty 'node_modules' folder. 
@@ -68,10 +66,14 @@ With a package.json created, I ran the command: *npm install lodash*. It added t
     "lodash": "^4.17.15"
 ```
 
+Installing a package: **npm install react**
+*Adds react to node_modules, and react to dependencies to package.json*
+
 ### Dependencies & npm install
 
 **dependencies** - These are packages your application needs to run. 
 **devDependencies** - Packages your application needs during development.
+*Using '--save-dev' installs the package as a dev dependency.*
 **npm install** - Downloads all of the packages inside of both dependencies and devDependencies and places them inside of the node_modules folder. 
 
 **Benefit of a grocery list:** Lets say we need to install all the dependencies for a project. When we run **npm install**, npm will **install all the dependencies specified in the package.json file**. 
@@ -83,3 +85,17 @@ With a package.json created, I ran the command: *npm install lodash*. It added t
 --save is used to save the package required for the application to run.
 
 For a more detailed answer, look at the 2nd highest rated answer: [stackoverflow](https://stackoverflow.com/questions/22891211/what-is-the-difference-between-save-and-save-dev)
+
+### Scripts
+
+NPM scripts are used to automate tasks. Here's an example:
+
+```javascript
+"scripts": {
+    "start": "webpack-dev-server --open",
+    "build": "NODE_ENV='production' webpack",
+}
+```
+
+Executing the script: **npm run [name of script]**
+*npm run start - would start the webpack dev server.*
