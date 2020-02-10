@@ -86,6 +86,11 @@ Installing a package: **npm install react**
 
 For a more detailed answer, look at the 2nd highest rated answer: [stackoverflow](https://stackoverflow.com/questions/22891211/what-is-the-difference-between-save-and-save-dev)
 
+**Save Globally**: *npm install module --global* 
+Installing a package globally allows you to use the code in the package as a set of tools on your local computer. 
+
+"Global install, instead puts the module into your Node.js path (OS dependent), and will be accessible from any project, without the need to install it separately for each." [stackoverflow](https://stackoverflow.com/questions/24606341/what-does-it-mean-to-npm-install-g) 
+
 ### Scripts
 
 NPM scripts are used to automate tasks. Here's an example:
