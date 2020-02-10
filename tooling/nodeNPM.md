@@ -99,3 +99,18 @@ NPM scripts are used to automate tasks. Here's an example:
 
 Executing the script: **npm run [name of script]**
 *npm run start - would start the webpack dev server.*
+
+### Versioning
+
+v.1.2.3
+
+1 - Major version - Breaking changes
+2 - Minor Version - New but not breaking feature
+3 - Patch Version - Everything else
+
+Making sense of carrots '^'
+"^15.7.2" - Instructs npm to install the newest version of the package with the **same major**. 
+
+"~15.7.2" - Instructs npm to install the newest version with the **same major and minor**.
+
+Exact version: "15.7.2"
