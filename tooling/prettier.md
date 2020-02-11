@@ -43,3 +43,6 @@ Step 4: Set up your config file
     "singleQuote": false,
 }
 ```
+
+## Reminder: Install the prettier plugin for eslint
+*npm install -D eslint-config-prettier*
