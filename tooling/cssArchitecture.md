@@ -20,3 +20,20 @@ Instead of dumping all of our css into a single file, we can spread it out into 
 
 **More on import**
 Import is a native css feature. However we don't want our browser to download multiple css files. Instead, we'd like webpack and PostCSS to see the import statement, and replace it with the contents of its file. 
+
+### Using PostCSS with Import
+
+**Install a package with npm**
+*npm install postcss-import --save-dev*
+
+**Modify the webpack.config.js file**
+```javascript
+const postCSSPlugins = [
+    require('postcss-import'),
+    require('postcss-simple-vars'),
+    require('postcss-nested'),
+    require('autoprefixer'),
+]
+```
+
+**Quick Tip:** Normalize is an alternative to css resets
