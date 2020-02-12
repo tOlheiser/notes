@@ -37,3 +37,15 @@ const postCSSPlugins = [
 ```
 
 **Quick Tip:** Normalize is an alternative to css resets
+
+## Further Organization
+
+Have your styles.css file contain only import statements. We'll take the global css and split that into a different file, and also import normalize.
+
+```css
+@import "normalize.css";
+@import "base/_global";
+@import "modules/_large-hero";
+```
+
+Here, normalize will be recognized by node_modules (ensure it is in your dependencies). I created a 'base' directory to store the global styles in.
