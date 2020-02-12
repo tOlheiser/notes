@@ -49,3 +49,54 @@ Have your styles.css file contain only import statements. We'll take the global 
 ```
 
 Here, normalize will be recognized by node_modules (ensure it is in your dependencies). I created a 'base' directory to store the global styles in.
+
+## Tidbit: Centering an Element Vertically Without Flexbox or Grid
+
+```css
+.large-hero {
+    position: relative;
+}
+
+.large-hero__text-content {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    width: 100%;
+    text-align: center;
+}
+```
+
+## BEM Methodology
+
+* Block
+* Element
+* Modifier
+
+**Block** - 
+
+### General Overview
+* CSS Selectors should target elements directly with classes, instead of relying on type selectors, descendent selectors, and the cascade. 
+* Blocks can be nested inside other blocks.
+* Identify patterns, and then create single-responsibility blocks.
+
+In BEM, you would not write a selector like this to target a child element:
+```css
+.large-hero h1 {
+    font-weight: 300;
+}
+```
+
+You'd instead create a class for it:
+```css
+.large-hero__title {
+    font-weight: 300;
+}
+```
+
+**Naming Convenetion**
+Block: 'large-hero'
+Element: 'subtitle'
+
+Put together: 'large-hero__subtitle'
+
