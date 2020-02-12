@@ -1,0 +1,22 @@
+# File Architecture
+
+Instead of dumping all of our css into a single file, we can spread it out into CSS Modules. 
+
+**Example File Architecture**
+-styles
+--modules
+ -- _large-hero.css
+--styles.css
+
+*Beginning a file with an underscore indicates that it is a partial file.*
+
+## Importing a CSS Module into the main CSS stylesheet
+```css
+/* styles.css */
+@import 'modules/_large-hero';
+```
+
+**Note**: The import statement must be specified at the top of the file. 
+
+**More on import**
+Import is a native css feature. However we don't want our browser to download multiple css files. Instead, we'd like webpack and PostCSS to see the import statement, and replace it with the contents of its file. 
