@@ -100,3 +100,32 @@ Element: 'subtitle'
 
 Put together: 'large-hero__subtitle'
 
+## PostCSS Nesting Integrated with BEM
+
+**Current CSS**
+```css
+.large-hero {
+    position: relative;
+}
+
+.large-hero__text-content {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.large-hero__title {
+    font-weight: 300;
+    color: #2f5572;
+    font-size: 4.8rem;
+}
+
+.large-hero__subtitle {
+    font-weight: 300;
+    color: #2f5572;
+    font-size: 2.9rem;
+}
+```
