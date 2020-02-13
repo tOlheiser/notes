@@ -198,27 +198,25 @@ The ampersand gets replaced with the root rules selector when the css is compile
         font-size: 2.9rem;
     }
 }
+```
 
-/* These are considered elements that belong to the noted block */
-.large-hero__text-content {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    left: 0;
-    width: 100%;
-    text-align: center;
-}
+**Same Effect Using Btn Styles**
+```css
+.btn {
+    background-color: $mainBlue;
+    color: #fff;
+    text-decoration: none;
+    padding: .75rem 1.2rem;
+    display: inline-block;
 
-.large-hero__title {
-    font-weight: 300;
-    color: #2f5572;
-    font-size: 4.8rem;
-}
+    &--orange {
+        background-color: $mainOrange;
+    }
 
-.large-hero__subtitle {
-    font-weight: 300;
-    color: #2f5572;
-    font-size: 2.9rem;
+    &--large {
+        font-size: 1.25rem;
+        padding: 1.1rem 1.9rem;
+    }
 }
 ```
 
