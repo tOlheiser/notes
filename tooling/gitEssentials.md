@@ -47,6 +47,9 @@ You can then check the status with 'git status', which will return: 'Changes to 
 **Committing Changes**
 *git commit -m "My first commit"* - think of '-m' as standing for message. 
 
+**Diff: Display the last changes on a file since the last commit**
+*git diff {filename}*
+
 **Checkout: Restore to the last commit**
 *git checkout -- .* - Restores the files to the way they were when you last made the commit.
 
@@ -55,7 +58,8 @@ You can then check the status with 'git status', which will return: 'Changes to 
 * *git push -u origin {branch-name}* - Pushes the new branch.
 
 **Remote: Location of where your changes are being pushed to**
-*git remote -v* - Will reveal the location of the repo. 
+* *git remote -v* - Will reveal the location of the repo. 
+* *git remote* - Gives you the remote's name.
 
 **Setting the Remote URL**
 *git remote set-url origin git@github.com:tOlheiser/travel-site.git*
@@ -83,3 +87,31 @@ You can then check the status with 'git status', which will return: 'Changes to 
 
 **Creating & Switching to a Branch Simultaneously**
 *git checkout -b {name-of-your-branch}* - '-b' being short for branch.
+
+### Merge
+Git Merge is used when you've completed development in your branch and everything works fine, and you're ready to merge the branch with the parent branch.
+
+**Note**: You must be on the specific branch that you want to merge with your feature branch.
+
+**Steps**
+* Switch to the dev branch: *git checkout dev*
+* Before merging, update your local dev branch: *git fetch*
+* Merge the branches: *git merge {feature-branch}*
+
+**Again, it's important to ensure your dev branch has the latest version before merging.**
+
+## Git Pull
+
+This command is used to get updates from the remote repo. It's a combination of **git fetch** and **git merge**. Meaning that when you invoke git pull, it gets updates from the remote repository *(git fetch)*, and immediately applies the latest changes in your local *(git merge)*
+
+**General Format:**
+*git pull {repository}* - Repository is the URL to your repo.
+
+**Pulling from a specific branch:**
+*git pull {remote-name} {branch-name}*
+* Remote name is the name of your remote repository.
+* Branch name indicates the name of your branch.
+
+**Note**: If you have uncommitted changes, the 'merge' portion of git pull will fail and your local branch will be untouched. 
+
+If there are multiple remotes, the 'git pull' command might not supply enough information. You may need to enter *git pull origin* or *git pull upstream*
