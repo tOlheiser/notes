@@ -104,10 +104,123 @@ Put together: 'large-hero__subtitle'
 
 **Current CSS**
 ```css
+/* large-hero is considered a block */
 .large-hero {
     position: relative;
 }
 
+/* These are considered elements that belong to the noted block */
+.large-hero__text-content {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.large-hero__title {
+    font-weight: 300;
+    color: #2f5572;
+    font-size: 4.8rem;
+}
+
+.large-hero__subtitle {
+    font-weight: 300;
+    color: #2f5572;
+    font-size: 2.9rem;
+}
+```
+
+**Basic nesting:**
+```css
+.large-hero {
+    position: relative;
+
+    .large-hero__text-content {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 0;
+        width: 100%;
+        text-align: center;
+    }
+}
+```
+
+The generated CSS:
+```css
+.large-hero .large-hero__text-content {
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+    left: 0;
+    width: 100%;
+    text-align: center;
+}
+```
+
+*.large-hero .large-hero__text-content* is a descendent selector, which goes against the BEM philosophy.
+
+### Correct Nesting to align with BEM
+
+```css
+.large-hero {
+    position: relative;
+
+    & {
+        ...
+    }
+}
+```
+
+The ampersand gets replaced with the root rules selector when the css is compiled. 
+
+**Putting it all together**
+```css
+.large-hero {
+    position: relative;
+
+    &__text-content { /* Gets compiled into .large-hero__text-content */
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 0;
+        width: 100%;
+        text-align: center;
+    }
+}
+```
+
+**Final Code**
+```css
+.large-hero {
+    position: relative;
+
+    &__text-content {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    &__title {
+        font-weight: 300;
+        color: #2f5572;
+        font-size: 4.8rem;
+    }
+
+    &__subtitle {
+        font-weight: 300;
+        color: #2f5572;
+        font-size: 2.9rem;
+    }
+}
+
+/* These are considered elements that belong to the noted block */
 .large-hero__text-content {
     position: absolute;
     top: 50%;
