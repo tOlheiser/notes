@@ -132,3 +132,32 @@ Step 4: Import your mixins to the main styles file
     }
 }
 ```
+
+## Responsive Images
+
+Is a way of sending different image files to different screen sizes.
+
+**Art direction & cropping situation**
+*This is when you use different variations of an image (progressively crops more and more)*
+
+```html
+<picture>
+    <!-- Large Img -->
+    <source srcset="images/dog-crop-large.jpg" media="(min-width: 1200px)">
+
+    <!-- Medium Img -->
+    <source srcset="images/dog-crop-medium.jpg" media="(min-width: 760px)">
+
+    <!-- Small Img -->
+    <img src="images/dog-crop-small.jpg" alt="Puppy in the sand.">
+</picture>
+```
+
+**Image Resolution & File Size Situation**
+
+The web browser is able to detect which image is best suitable.
+```html
+<img srcset="images/dog-resolution-small.jpg 570w, images/dog-resolution-medium.jpg 1200w, images/dog-resolution-large.jpg 1920w" alt="puppy in the sand.">
+```
+
+The measurements, '1200w' is to aid the browser in choosing which file to download and display. 
