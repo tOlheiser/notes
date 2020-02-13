@@ -36,8 +36,6 @@ const postCSSPlugins = [
 ]
 ```
 
-**Quick Tip:** Normalize is an alternative to css resets
-
 ## Further Organization
 
 Have your styles.css file contain only import statements. We'll take the global css and split that into a different file, and also import normalize.
@@ -50,30 +48,11 @@ Have your styles.css file contain only import statements. We'll take the global 
 
 Here, normalize will be recognized by node_modules (ensure it is in your dependencies). I created a 'base' directory to store the global styles in.
 
-## Tidbit: Centering an Element Vertically Without Flexbox or Grid
-
-```css
-.large-hero {
-    position: relative;
-}
-
-.large-hero__text-content {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    left: 0;
-    width: 100%;
-    text-align: center;
-}
-```
-
 ## BEM Methodology
 
 * Block
 * Element
 * Modifier
-
-**Block** - 
 
 ### General Overview
 * CSS Selectors should target elements directly with classes, instead of relying on type selectors, descendent selectors, and the cascade. 
@@ -240,5 +219,52 @@ The ampersand gets replaced with the root rules selector when the css is compile
     font-weight: 300;
     color: #2f5572;
     font-size: 2.9rem;
+}
+```
+
+## CSS Quick Tips
+* Use rem for font-size to adapt to the users' various font preferences. 
+* Normalize is an alternative to css resets
+
+### Centering an Element Vertically Without Flexbox or Grid
+
+```css
+.large-hero {
+    position: relative;
+}
+
+.large-hero__text-content {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    width: 100%;
+    text-align: center;
+}
+```
+
+### Using Variables In PostCSS
+
+Firstly, you would keep a file in your style's base folder that keeps track of the variables. We'll name it _variables.css.
+
+-styles
+--base
+  --_global.css
+  --_variables.css
+--modules
+  --_btn.css
+  --_large-hero.css
+--styles.css
+
+**_variables.css**
+```css
+$mainBlue: #2f5572;
+```
+
+You would then import that variables module into your main styles.css file so that you can use that variable in your module.
+
+```css
+.btn {
+    background-color: $mainBlue;
 }
 ```
