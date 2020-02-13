@@ -77,3 +77,58 @@ Step 3: Add a mixins folder to the base directory
   --_btn.css
   --_large-hero.css
 --styles.css
+
+Step 4: Import your mixins to the main styles file
+```css
+@import "base/_mixins";
+```
+
+## Mixins in Action
+
+### Defining a mixin
+*@define-mixin mixin-name*
+
+```css
+/* _mixins.css */
+
+@define-mixin atSmall {
+    @media (min-width: 530px) {
+        @mixin-content;
+    }
+}
+
+@define-mixin atMedium {
+    @media (min-width: 800px) {
+        @mixin-content;
+    }
+}
+
+@define-mixin atLarge {
+    @media (min-width: 1200px) {
+        @mixin-content;
+    }
+}
+```
+
+### Using the mixin
+```css
+/* _large-hero.css */
+&__title {
+    font-weight: 300;
+    color: #mainBlue;
+    margin: 0;
+    font-size: 1.1rem; 
+    
+    @mixin atSmall {
+        font-size: 2rem;
+    }
+
+    @mixin atMedium {
+        font-size: 3.2rem;
+    }
+
+    @mixin atLarge {
+        font-size: 4.8rem;
+    }
+}
+```
