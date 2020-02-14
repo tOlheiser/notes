@@ -50,9 +50,9 @@ Here, normalize will be recognized by node_modules (ensure it is in your depende
 
 ## BEM Methodology
 
-* Block
-* Element
-* Modifier
+* Block - Standalone entity that is meaningful on its own.
+* Element - A part of a block that has no standalone meaning and is semantically tied to its block.
+* Modifier - A flag on a block or element. Use them to change appearance or behavior. Examples include 'checked', 'disabled', 'highlighted', etc.
 
 ### General Overview
 * CSS Selectors should target elements directly with classes, instead of relying on type selectors, descendent selectors, and the cascade. 
@@ -73,11 +73,16 @@ You'd instead create a class for it:
 }
 ```
 
-**Naming Convenetion**
+**Naming Convention**
 Block: 'large-hero'
-Element: 'subtitle'
+Element: 'large-hero__subtitle'
+Modifier: 'large-hero--modifier'
 
-Put together: 'large-hero__subtitle'
+**'A more JavaScript-friendly BEM naming convention'**
+* Blocks are written using PascalCase, like in VideoPlayer.
+* Elements are written using camelCase, joined to the block name using a single underscore (_), like in VideoPlayer_buttonsContainer.
+* Modifiers are written using camelCase, but we use three underscores (___) to join the modifier to the block or element name, like in VideoPlayer___isLoading.
+[source](https://medium.com/trabe/a-more-javascript-friendly-bem-naming-convention-75c7f01ff736)
 
 ## PostCSS Nesting Integrated with BEM
 
