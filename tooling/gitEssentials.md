@@ -17,6 +17,17 @@
 git config --global user.name "Tanner"
 git config --global user.email "tolheiser@outlook.com"
 
+## Git Workflow
+
+You generally want to maintain three branches:
+* **Master branch** - Used for ready for production changes.
+* **Dev branch** - Used for testing purposes.
+* **Feature branch** - One of many branches you work directly in ie. footer, nav, etc.
+
+**We should work neither in the master branch nor on the dev branch directly.** For every new change in your project, **create a branch from the dev branch** by naming the new branch related to the feature you're working on.
+
+**Commits** - As a general rule, commit often. You shouldn't be lumping a bunch of changes into the same commit.
+
 ## Git Commands
 
 **General Command Line Commands**
