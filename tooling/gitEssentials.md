@@ -111,6 +111,44 @@ Git Merge is used when you've completed development in your branch and everythin
 
 **Again, it's important to ensure your dev branch has the latest version before merging.**
 
+**Useful Merge Commands**
+*git branch --merged master* - lists branches merged into master
+*git branch --merged* - lists branches merged into HEAD (i.e. tip of current branch)
+*git branch --no-merged* - lists branches that have not been merged
+
+### Rebasing
+Example: We want to 'rebase' the feature branch onto master branch:
+* *git checkout feature*
+* *git rebase master*
+
+This moves the entire feature branch to begin on the tip of master branch, essentially incorporating all of master's new commits. Rebasing re-writes the project history by creating brand new commits for each commit in the original branch.
+
+A major benefit of rebasing is that you get a much cleaner project history. The drawbacks of this approach are safety and traceability. 
+
+**Interactive Rebasing**
+This feature of rebasing gives you the ability to alter commits as they are moved to the new branch. It gives you full control over the branch's commit history.
+
+How to use Interactive Rebasing:
+*git checkout feature*
+*git rebase -i master*
+
+This opens a text editor listing all of the commits that are about to be moved:
+*pick 33d5b7a Message for commit #1*
+*pick 9480b3d Message for commit #2*
+*pick 5c67e61 Message for commit #3*
+
+The above is a listing that defines exactly what the branch will look like after the rebase is performed. 
+
+*pick 33d5b7a Message for commit #1*
+*fixup 9480b3d Message for commit #2*
+*pick 5c67e61 Message for commit #3*
+
+**Fixup** - Condenses #2 and #1 into a single git commit. 
+**Tip** - You have the option of rearranging commits. 
+
+#### Golden Rule of Rebasing
+Never use git rebase on public branches; branches other people can see/work on.
+
 ## Git Pull
 
 This command is used to get updates from the remote repo. It's a combination of **git fetch** and **git merge**. Meaning that when you invoke git pull, it gets updates from the remote repository *(git fetch)*, and immediately applies the latest changes in your local *(git merge)*
