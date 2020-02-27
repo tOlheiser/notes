@@ -257,3 +257,18 @@ if (localStorageRef) {
     });
 }
 ```
+
+## Quick Tip: Deleting From State
+
+```javascript
+removeFromOrder(key) {
+    // duplicate the state object
+    const order = {...this.state.order};
+
+    //delete what you wanted to
+    delete order[key];
+
+    //setState
+    this.setState({ order });
+}
+```
