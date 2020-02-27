@@ -217,3 +217,43 @@ componentWillUnmount() {
 }
 
 ```
+
+## Syncing State with LocalStorage
+LocalStorage is a nice way to preserve form data. We'll use componentWillUpdate, because it triggers this lifecycle event whenever props or state changes. 
+
+LocalStorage can be found in your network tab within the console. It consists of key value pairs, like objects. The only way it differs from objects is that you can't nest objects.
+
+**Setting an item in LocalStorage:**
+```javascript
+localStorage.setItem('wes', 'is really cool');
+```
+
+**Retrieving an item from LocalStorage:**
+```javascript
+localStorage.getItem('wes'); //is really cool
+```
+
+Seeing this in action:
+```javascript
+componentWillUpdate(nextProps, nextState) {
+    localStorage.setItem(`order-${this.props.params.storeId}`, JSON.stringify(nextState.order));
+}
+```
+
+Using componentWillMount() to check if there is any order in localStorage
+```javascript
+// this runs right before App is rendered.
+this.ref = base.syncState(`${this.props.params.storeId}`, {
+    context: this,
+    state: 'fishes'
+});
+
+//check if there is any order in localStorage
+const localStorageRef = localStorage.getItem(`order-${this.props.params.storeId}`);
+
+if (localStorageRef) {
+    this.setState({
+        order: JSON.parse(localStorageRef) 
+    });
+}
+```
