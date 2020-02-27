@@ -272,3 +272,29 @@ removeFromOrder(key) {
     this.setState({ order });
 }
 ```
+
+## Deploying to an Apache Server
+
+Step 1: Ensure your router points to the correct directory.
+```javascript
+<BrowserRouter basename="/catchoftheday"/>
+
+// Adjust your 'homepage' value inside package.json
+"homepage": "https://catchoftheday.wesbos.com/what/getting",
+```
+
+Step 2: Run 'npm build' to build out your project.
+
+Step 3: Upload the build files to your website.
+
+Step 4: Ensure React Router is doing the routing.
+* create a .htaccess file at the root level of your build folder.
+* Add some rules:
+
+```javascript
+RewriteBase /
+RewriteRule ^index\.html$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.html [L]
+```
