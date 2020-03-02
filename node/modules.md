@@ -41,3 +41,18 @@ module.exports.subtract = (num, num2) => {}
 ```
 
 *Don't mix and match syntax. import/export go together, require() and module.exports go together.*
+
+## Importing Modules
+
+```javascript
+// lib.js
+module.exports = () => {
+    console.log('name')
+}
+
+//app.js
+const nameFn = require('./lib');
+
+nameFn();
+
+```
