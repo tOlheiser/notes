@@ -1,5 +1,7 @@
 # Node.js & NPM
 
+Npm is a repository of modules, and it serves as a tool to manage them.
+
 ## Benefits of Node & NPM
 * Automation
 * Organization
