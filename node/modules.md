@@ -56,3 +56,18 @@ const nameFn = require('./lib');
 nameFn();
 
 ```
+
+## Overview of Importing Modules
+
+**Custom local modules**
+```javascript
+var lib = require('../rel/path/to/lib') // must use the '.' first.
+```
+
+**Remote Modules & Shipping Modules**
+```javascript
+var lib = require('lib') 
+// the same name you used to install it with npm for remote modules.
+```
+
+
