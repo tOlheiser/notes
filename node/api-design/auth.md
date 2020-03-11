@@ -89,6 +89,8 @@ export const signin = async (req, res) => {
 * Must be a real user
 * Finds user from token and passes on
 
+**Note**: The express-jwt package on npm comes with Middleware that validates JWT for you. 
+
 ```javascript
 export const protect = async (req, res, next) => {
 
