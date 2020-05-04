@@ -169,3 +169,30 @@ mongodb.MongoClient.connect(uri, (err, db) => {
   });
 });
 ```
+
+## Part 6: Testing the Code
+While app.js is running, paste this code into dev tools console and run it:
+
+**Creating a new user**
+```javascript
+// The extra data will be sent in the `body` property of 
+// the fetch request and stored with the user data in the database (collection)
+const extraDataToStore =  { 
+  eyeColor: 'blue', 
+  hairColor: 'brown',
+  pass: 'mypassword123'
+};
+
+fetch(postURL, {
+        method: 'POST', // Using POST request to create a new resource in the database
+        mode: 'cors', // no-cors, cors, *same-origin
+        cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: 'same-origin', // include, *same-origin, omit
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        redirect: 'follow', // manual, *follow, error
+        referrer: 'no-referrer', // no-referrer, *client
+        body: JSON.stringify(extraDataToStore), // body data type must match "Content-Type" header
+})
+```
