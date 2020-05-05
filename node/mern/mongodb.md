@@ -1,6 +1,8 @@
 # MongoDB
 
 ## Part 1: Setting up Mongo
+
+### Option A: MongoDB Atlas
 *For this I'll use MongoDB's Atlas*
 
 1. Create a free account. 
@@ -13,6 +15,39 @@
 5. Name the cluster anything you want.
 
 *What is a cluster?*
+
+### Option B: Local Server
+
+1. [Download MongoDB](https://www.mongodb.com/download-center/community)
+
+Once installed, you'll see that there are two executable files in the bin directory:
+* mongod - Mongo Daemon; a background process to manage all MongoDB server tasks.
+* mongo - Command line shell to interact with the client.
+
+*C: -> Program Files -> MongoDB -> Server -> 4.0(version) -> bin*
+
+2a. Open a command prompt inside your C drive.
+2b. Create directories for MongoDB to store all the data by entering this command into your command prompt: *C:\> mkdir data/dbC:\> cd dataC:\> mkdir db*
+3a. Open a command prompt inside the bin folder of your mongodb directory.
+3b. Run this command: *mongod*
+
+**The server is now running, but at the moment we can't work with it.**
+
+4. Open a command prompt inside the bin folder and run the command: *mongo*
+5. Return to the shell where you ran the mongod command. You should see a 'connection accepted' message at the end.
+
+**That means your installation and configuration is successful.**
+
+Now you can simply run 'db' in the mongo shell.
+
+#### Set up Environment Variables
+
+Use the following menus:
+*Advanced System Settings -> Environment Variables -> Path(Under System Variables) -> Edit*
+
+Copy the path of your bin folder and hit OK. It might look something like:
+*C:\Program Files\MongoDB\Server\4.0\bin*
+
 
 ## Part 2: Database Access
 
