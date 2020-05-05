@@ -70,6 +70,50 @@ To find your URI, click on the 'Clusters' tab of your project. On your main clus
 
 *How to form a URI string?*
 
+## Working with MongoDB
+
+You can use GUIs such as MongoDB Compass and Studio 3T to work with MongoDB, but this section will focus on the command line.
+
+1. Run 'mongod' in your command prompt to start the MongoDB server.
+2. Open up another shell and run 'mongo' to connect to MongoDB database server.
+
+### Sample Commands
+* db - Finds the current database you're in
+* show databases - Lists databases
+* use <your_db_name> - Go to a particular database
+
+### SQL Terms vs MongoDB Terms
+
+**SQL -> MongoDB**
+* Database -> Database
+* Tables -> Collections
+* Rows -> Documents (BSON)
+* Columns -> Fields
+
+#### Creating a Database
+command: use <your_db_name>
+
+If your database exists already, this command will just navigate to that database. If the database doesn't exist, this command will create it for you. Once the db is created, it will not display under your 'show database' command until it has data.
+
+#### Creating a Collection
+
+Navigate into your newly created database with the 'use' command.
+
+**First Method: Insert data into the collection.**
+*db.myCollection.insert({"name": "john", "age" : 22, "location": "colombo"})*
+
+This creates your collection 'myCollection', then it inserts a document with 'name' and 'age'. 
+
+**Second Method: Creating a non-capped selection:**
+*db.createCollection("myCollection")*
+
+**Creating a capped collection:**
+*db.createCollection("mySecondCollection", {capped : true, size : 2, max : 2})*
+
+The size here means the limit is set to 2 megabytes, and max: 2 sets the max number of documents to two.
+
+Note about capped collections: If you try to insert more than two documents into mySecondCollection and use the find command, you'll only see the most recently inserted documents. (The very first document hasn't been deleted, it's just not showing.)
+
 ## Part 4: Install Node.js Dependencies
 * Express.js - Express is one of the most popular was of creating servers in Node.
 * CORS (Cross-Origin Resource Sharing) - safety feature that we need to bypass to be able to access resources out of localhost
