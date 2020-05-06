@@ -114,6 +114,68 @@ The size here means the limit is set to 2 megabytes, and max: 2 sets the max num
 
 Note about capped collections: If you try to insert more than two documents into mySecondCollection and use the find command, you'll only see the most recently inserted documents. (The very first document hasn't been deleted, it's just not showing.)
 
+### Inserting Data
+```javascript
+// key-value pairs
+"firstName": "navindu",
+"age": 22,
+
+// array of strings
+"skills": ["js", "php"],
+
+// an object
+"location": {
+    "city": "Colombo",
+    "street": "Makola"
+},
+
+// array of objects 
+"hobbies": 
+    {
+        "hobby": "eat"
+    },
+    {
+        "hobby": "sleep"
+    }
+]
+
+```
+
+**Three Methods of Inserting Data**
+* insertOne() - Insert a single document
+* insertMany() - Insert more than one document
+* insert() - insert as many documents as you want
+
+**insertOne()**
+```javascript
+db.myCollection.insertOne(
+    {
+        "name": "navindu",
+        "age": 22
+    }
+)
+```
+
+**insertMany()**
+```javascript
+db.myCollection.insertMany([
+  {
+    "name": "navindu", 
+    "age": 22
+  },
+  {
+    "name": "kavindu", 
+    "age": 20
+  },
+
+  {
+    "name": "john doe", 
+    "age": 25,
+    "location": "colombo"
+  }
+])
+```
+
 ## Part 4: Install Node.js Dependencies
 * Express.js - Express is one of the most popular was of creating servers in Node.
 * CORS (Cross-Origin Resource Sharing) - safety feature that we need to bypass to be able to access resources out of localhost
