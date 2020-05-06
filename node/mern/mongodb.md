@@ -176,6 +176,39 @@ db.myCollection.insertMany([
 ])
 ```
 
+### Querying Data
+
+**Query ALL data from a collection:**
+db.myCollection.find()
+db.myCollection.find().pretty() - *formats it in a pretty way*
+db.myCollection.find({}, _id: 0).pretty() - *hides the _id field*
+
+**Filtering Data**
+Specify a single detail of the document you are looking for.
+
+```javascript
+db.myCollection.find(
+  {
+    name: "john"
+  }
+)
+```
+
+Example: Display people with an age less than 25.
+```javascript
+db.myCollection.find(
+  {
+    age : {$lt : 25}
+  }
+)
+```
+
+**Commands**
+$gt - Greater than
+$lte - Less than or equal to
+$gte - greater than or equal to
+$ne - Not equal to
+
 ## Part 4: Install Node.js Dependencies
 * Express.js - Express is one of the most popular was of creating servers in Node.
 * CORS (Cross-Origin Resource Sharing) - safety feature that we need to bypass to be able to access resources out of localhost
