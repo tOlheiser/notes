@@ -1,5 +1,7 @@
 # React Refresher
 
+**Tip** - Generally, if you use a component in multiple places on a site, it should be in its own module file in the components directory. If it's used only in one file, create it inline.
+
 ## Using Props
 ```javascript
 // header.js - purpose of this is just to export an H1 element.
@@ -31,3 +33,14 @@ export default function About() {
 // Must import the Header to use it.
 // When 'Header' is called, I pass in the "About Gatsby" value into the headerText props. 
 ```
+
+## Import vs Require
+```javascript
+import "./src/styles/global.css"
+
+// or:
+require('./src/styles/global.css')
+```
+
+*require* is a CommonJS feature and *import* is an ES Module. Import is a good defeault. However, when working with files that are only run in a Node environment (like gatsby-node.js) *require* must be used.
+
