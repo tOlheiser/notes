@@ -24,11 +24,11 @@ You're now free to create style blocks of each element type.
 
 ## Creating Global Styles
 
-You can create styled components that override global styles. It is only advisable to do this within the Layout component.
+You can create styled components that override global styles. It is only advisable to do this within the Layout component. These styles are exposed to the whole app. 
 
 ```js
 // src/components/layout.js
-import { createGlobalStyle } from "styled-components"
+import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
     body {
@@ -94,4 +94,17 @@ render(
     <Button primary>Primary</Button>
   </div>
 );
+```
+
+## Theme
+
+You can create a theme file that holds all our variables. Create a theme.js file:
+
+```javascript
+export const theme = {
+  primaryDark: '#0D0C1D',
+  primaryLight: '#EFFFFA',
+  primaryHover: '#343078',
+  mobile: '576px',
+}
 ```
