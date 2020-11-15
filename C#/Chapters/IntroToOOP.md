@@ -2,9 +2,21 @@
 
 OOP is a modular method of programming that gives you much more versatility and provides much more opportunity for code reuse. 
 
-Class - template of an object.
+Class - blueprint of an object.
 Object - An instance of that template.
 State - The various pieces of data that make up the object.
+
+You generally do not want to create public instance variables.
+
+**Visual studio tool**
+View -> Object Browser
+This gives you an overview of the objects for your program.
+
+**namespace** - Essentially a naming scheme composed of various classes. When you import a namespace, you get access to all the classes/objects defined in that namespace.
+
+**Bad Practices:**
+* Creating public instance variables.
+
 
 ## Accessibility
 
@@ -50,7 +62,7 @@ Static constructors can be used to do this.
 
 **Rules of Static Constructors:**
 * A class can have a single static constructor
-* It must have no access modifiers --> *What is this again?*
+* It must have no access modifiers --> *public/private*
 * Cannot have any parameters
 * It can never be called directly.
 
