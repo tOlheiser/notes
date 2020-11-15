@@ -2,10 +2,21 @@
 
 Driver class - The class used to interact or 'drive' an object.
 
+## Operating within Visual Studio
+
+**Creating Classes & storing them in their own file:** 
+* Right click on the name of project
+* Add -> New Item...
+* Choose class & give it a name
+* *Visual studio automatically sets up your class within the appropriate namespace.*
+
+
+**Declare these classes within the same namespace**
+
 ```c#
 // AccountTest.cs
 
-class AccountTest {
+class AccountTest { 
   static void Main() {
     // create an Account object, assign it to myAccount
     Account myAccount = new Account();
@@ -36,8 +47,7 @@ myAccount's name is: Jane Green
 // Account.cs - simple Account class that contains a private instance
 // variable name and public methods to Set and Get name's value.
 
-// class declaration
-class Account {
+class Account { // class declaration
   private string name; // instance variable
 
   /* method that takes in a string (accountName) and sets the name to whatever value the string (accountName) contains */
@@ -85,6 +95,45 @@ Set methods can be programmed to validate their arguments and reject any attempt
 
 Get methods can present the data in a different form, while the actual data representation remains hidden from the user. 
 ex/ Grade class stores a 'grade' instance with a variable int between 0 and 100. GetGrade returns a letter grade as a string, such as "A" for grades between 90 and 100.
+
+### Proper Syntax:
+
+```c#
+class Account {
+  private string firstName; // instance variable; your 'field'
+
+  /* property declaration - it's the public name for the private internal field value */
+  /* for it to be a property, it has to be public. No sense making a property private - thus making it internal - giving you no access outside the class */
+
+  public string FirstName {
+    get { // get block of code is called when we access the property
+      return firstName;
+    }
+
+    set { // set block is called when we assign the property
+      // set the private internal field value from the property
+      firstName = value; // value is just a dummy, placeholder variable
+    }
+  }
+
+  // auto implemented property, when you only need the basic read/write.
+  // no field variable required, it is auto-generated.
+  public string LastName { get; set; } 
+
+  // In the case of a property for which a field does not exist:
+  public string FullName {
+    get {
+      return FirstName + " " + LastName; // access through properties
+    }
+    // set {} - No setter, read only.
+  }
+
+}
+
+Account myAccount = new Account(); // Create an instance of the Account obj
+myAccount.FirstName = "Bob"; // set the firstName as "Bob"
+Console.WriteLine(myAccount.FirstName); // Get the firstName and output
+```
 
 ## Properties
 Properties encapsulates a set accessor for storing a value and a get accessor for getting the value of a variable. 
