@@ -79,3 +79,32 @@ When the list grows to exceed the current capacity, that capacity's value double
 
 You can use list.TrimExcess() to reduce a List's capacity to the current count. There is also the option of setting the Capacity directly.
 
+# Tutorial
+
+**Declaring a List with Predefined values**
+```c#
+var names = new List<string> { "Tanner", "Ana", "Felipe" };
+var fibonacciNumbers = new List<int> {1, 1};
+```
+
+**Accessing Elements within the list**
+```c#
+names[1]; // reference the element at index 1 in names
+```
+
+**Creating a List of objects**
+```c#
+// creates a List called 'parts' that will be composed of Part objects.
+List<Part> parts = new List<Part>();
+```
+
+**Adding Objects to your List**
+```c#
+  // Add parts to the list.
+  parts.Add(new Part() {PartName="crank arm", PartId=1234});
+  parts.Add(new Part() { PartName = "chain ring", PartId = 1334 });
+```
+
+## Searching Lists
+
+**indexOf** - searches for an item and returns the index of that item; if the item isn't in the list, indexOf returns -1.
