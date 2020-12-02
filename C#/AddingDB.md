@@ -54,11 +54,59 @@ public partial class MainWindow: Window {
 }
 
 private void LoadCustomersButton_Click(object sender, RoutedEventArgs, e) {
-  // LoadCustomers()
+  LoadCustomers()
 }
 
-void LoadCustomers() {
+// must have: using System.Data.SqlClient; at the top
 
+void LoadCustomers() {
+  // declare a variable named connection that is an instance of the SqlConnection object
+  using (SqlConnection connection = new SqlConnection() ) {
+    connection.ConnectionString = ""; // set the connectionstring property
+    // NOTE: Place an @"" in front of the string to suppress escape characters and special characters.
+
+    // open the connection to make use of it
+    connection.Open();
+
+    // create a SQL command as a string, then place in a command object
+    string sql = "SELECT * FROM Customers;";
+    
+    // requires the sql statement/query we want to run and the connection string
+    SqlCommand SelectCommand = new SqlCommand(sql, connection);
+
+    // execute the command and obtain a data reader with the result
+    using(SqlDataReader Reader = SelectCommand.ExecuteReader() ) {
+      // loop over the reader results row by row
+      // when no rows/run out of rows .Read returns false
+      
+      Customer NewCustomer;
+      
+      while (Reader.Read()) {// reads one row from the reader. returns false of no rows left.
+        // load the listbox and the List<Customer> the data from this row/record
+        // create a new Customer object from the record (row)
+        // first col value: Reader["CustomerNumber"] OR Reader[0]
+        // note Reader[] returns an Object - so we must cast to use it
+
+        // load the record into the NewCustomer object
+        NewCustomer = new Customer((int)Reader["CustomerNumber"], 
+                                  (DateTime)Reader["CustomerDate"],
+                                  (string)Reader["FirstName"],
+                                  (string)Reader["LastName"],
+                                  (string)Reader["Email"],
+                                  (string)Reader["StreetAddress"],
+                                  (string)Reader["City"],
+                                  (string)Reader["Province"],
+                                  (string)Reader["PostalCode"]
+                                  );
+      
+      // Add NewCustomer to List<> and the listbox
+      CustomerList.Add(NewCustomer);
+      CustomerListBox.Items.Add(NewCustomer);
+
+      } 
+
+    }
+  }
 }
 
 
@@ -84,13 +132,16 @@ public class Customer {
 
   public int CustomerNumber { get; set; }
   public DataTime CustomerDate { get; set; } 
-  public string FirstName { get; set }
-  public string LastName { get; set }
-  public string Email { get; set }
-  public string StreetAddress { get; set }
-  public string City { get; set }
-  public string Province { get; set }
-  public string PostalCode { get; set }
+  public string FirstName { get; set; }
+  public string LastName { get; set; }
+  public string Email { get; set; }
+  public string StreetAddress { get; set; }
+  public string City { get; set; }
+  public string Province { get; set; }
+  public string PostalCode { get; set; }
+
+  // must override the base ToString() class.
+  public override string ToString() => $"{CustomerNumber,5} {CustomerDate,-25}";
 
 }
 ```
@@ -101,3 +152,10 @@ using (declarations...) {
 
 } // variables created within this scope are destroyed after this code block executes.
 ```
+
+## Finding the Connection String:
+Within server explorer, click on the database
+It will display propertyies
+Within your properties, it will display a connection string.
+Replace the absolute path to the database mdf file with a relative path: 
+|DataDirectory|
