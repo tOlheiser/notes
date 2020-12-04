@@ -108,3 +108,94 @@ List<Part> parts = new List<Part>();
 ## Searching Lists
 
 **indexOf** - searches for an item and returns the index of that item; if the item isn't in the list, indexOf returns -1.
+
+===============================================================
+///////////////////////////////////////////////////////////////
+
+# Notes from the Demo File
+```c#
+public partial class MainWindow : Window {
+  // create a List collection of Contacts
+  List<Contact> ContactList = new List<Contact>(); // () denotes a constructor
+
+  // ContactList.Count = # of elements USED in the List
+  // ContactList.Capacity = Total # of elements available in List
+  // ContactList[1].FirstName -> Can access elements by index
+
+  int CurrentSelectedIndex = -1; // tracks the current index item being displayed
+  
+  // track the ContactItem corresponding to the current index.
+  Contact CurrentSelectedItem; // I THINK this initializes an item of type Contact to store the currently selected Contact Item
+
+  public MainWindow() {
+    InitializeComponent();
+  }
+
+  // Button to load the list
+  private void LoadListButton_Click(object sender, RoutedEventArgs e) {
+    // Clear the Listbox and the List<Contacts>
+    ContactListBox.Items.Clear();
+    ContactList.Clear(); 
+
+    // Create some contact records in the List and display in the listbox
+    // AddContactItem is a method to do such thing.
+    AddContactItem("Bob", "Smith", "bob@company.com");
+    AddContactItem("Wendy", "Jones", "wendy@jones.com");
+    AddContactItem("Sarah", "Wendell", "sarah@email.com");
+  } // end load method
+
+  void AddContactItem(string FirstName, string LastName, string Email) {
+    // Creating a new instance of the Contact and passing in data from method
+    Contact ContactItem = new Contact(FirstName, LastName, Email);
+
+    ContactList.Add(ContactItem); // Add the ContactItem to the ContactList
+    ContactListBox.Items.Add(ContactItem); // Add the same item to the listbox
+  } // end add method
+
+  // Click event for when the selection is changed
+  private void ContactListBox_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+    // Update the index to the Listbox SelectedIndex
+    CurrentSelectedIndex = ContactListBox.SelectedIndex;
+
+    // the item retrieved needs to be cast into a Contact type
+    CurrentSelectedItem = (Contact)ContactListBox.SelectedItem; 
+
+    // Protect against null object reference (if the user changes selection to something other than an item, like clicking away.)
+    if (CurrentSelectedItem == null) {
+      // if no object - Clear / blank out the display form
+      FirstNameTextBox.Clear();
+      // ... and so on
+    // Otherwise, it must be a valid item. Update the text fields.
+    } else {
+      FirstNameTextBox.Text = CurrentSelectedItem.FirstName;
+    }
+  } // end selectionchanged event
+
+  private void RemoveItem_Click(object sender, RoutedEventArgs e) {
+    // Note index of the current Item... unsure why a copy is necessary
+    int SelectedIndex = CurrentSelectedIndex; // something about this seems odd
+
+    // Delete only if we have a valid item selected
+    if (CurrentSelectedItem == null) {
+      MessageBox.Show("No record selected to remove");
+      return;
+    }
+
+    // Delete the item by specifing the item / object
+    ContactList.Remove(CurrentSelectedItem);
+    ContactListBox.Items.Remove(CurrentSelectedItem);
+
+    // Check if we didn't remove the last item in the list
+    if (SelectedIndex <= ContactListBox.Items.Count - 1) {
+      // reset the selected index to the position of the selected index
+      ContactListBox.SelectedIndex = SelectedIndex;
+    // otherwise, we deleted the last item.
+    } else {
+      // Select the new last item
+      ContactListBox.SelectedIndex = ContactListBox.Items.Count - 1;
+    }
+
+  }
+}
+```
+
