@@ -199,3 +199,18 @@ public partial class MainWindow : Window {
 }
 ```
 
+## Contact Class
+
+**Usage of the Arror Function in the getters and setters**
+```c#
+public string LastName {
+  get => lastName;
+  set => lastName = value;
+}
+
+public string Email { get => email; set => email = value; }
+public string FullName { get => $"{FirstName} {LastName}";  } // no setter means read-only
+
+// overriding ToString()
+public override string ToString() => $"{FullName} {Email}";
+```
