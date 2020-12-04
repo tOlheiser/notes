@@ -60,6 +60,10 @@ private void LoadCustomersButton_Click(object sender, RoutedEventArgs, e) {
 // must have: using System.Data.SqlClient; at the top
 
 void LoadCustomers() {
+// clear out list and listbox first for a re-load
+CustomerList.Clear();
+CustomersListBox.Items.Clear();
+
   // declare a variable named connection that is an instance of the SqlConnection object
   using (SqlConnection connection = new SqlConnection() ) {
     connection.ConnectionString = ""; // set the connectionstring property
@@ -159,3 +163,75 @@ It will display propertyies
 Within your properties, it will display a connection string.
 Replace the absolute path to the database mdf file with a relative path: 
 |DataDirectory|
+
+## Update functionality
+```c# 
+// when a user selects a record, display the details in the form.
+// when the edit the data then click update, it updates.
+private void CustomersListBox_SelectionChanged(object sender, SelectionChangedEventArgs, e) {
+  // section change event on the listbox
+  // update the form with the currently selected data
+  CurrentCustomer = (Customer)CustomersListBox.SelectedItem; // must cast into customer class
+  CurrentSelectedIndex = CustomersListBox.SelectedIndex; // returns an integer
+
+  // display the current record in the form
+  // DisplayCustomer() 
+}
+```
+
+## Save Existing Functionality
+```c#
+private void SaveExistingButton_Click(object sender, RoutedEventArgs e) {
+  // validate data first!
+
+  // get the changed data from the form 
+  //CurrentCustomer.CustomerNumber = Convert.ToInt32(CustomerNumberTextBox.Text); // don't allow user to edit this.
+  CurrentCustomer.CustomerDate = Convert.ToDateTime(CustomerDateTextBox.Text);
+  CurrentCustomer.FirstName = FirstNameTextBox.Text;
+
+  // update the current record in the database
+  using (SqlConnection connection = new SqlConnection()) {
+    // anything declared in here is discarded from memory after codeblock is ran
+    connection.ConnectionString = ""; // connection string here.
+
+    // Open connection
+    connection.Open();
+
+    // create an update SQL query string
+    string sql =   "UPDATE Customers SET " +
+                  // note that single quotes must be wrapped around strings
+                  $"CustomerDate = '{CurrentCustomer.CustomerDate}', " +
+                  // ... and so on for all the columns
+                  $"WHERE CustomerNumber = {CurrentCustomer.CustomerNumber};";
+  
+    // Create a SQL command to hold the query string
+      // pass in connection string and connection object
+    using (SqlCommand UpdateCommand = new SqlCommand(sql, connection) ) {
+      // execute the command
+      UpdateCommand.ExecuteNonQuery(); // executes a SQL command, returns int for number of rows updates
+        
+    }
+    connection.Close(); // not necessary when inside 'using {}', but good form
+    // can also close reader Reader.Close();
+  
+  }
+  // update the listbox and the list
+  // we can just reload everything from the database
+  LoadCustomers();
+}
+```
+
+```c#
+private void DisplayCustomer() {
+  // protect against the case there is no selected item; null value
+  if (CurrentCustomer != null) {
+    CustomerNumberTextBox.Text = CurrentCustomer.CustomerNumber.ToString();
+    // ... and so on for all the values
+  } else {
+    // blank out the textboxes if you don't have a valid object
+    CustomerNumberTextBox.Text = "";
+    CustomerNumberTextBox.Clear(); // alternative to ""
+  }
+}
+
+```
