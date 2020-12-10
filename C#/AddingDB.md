@@ -18,6 +18,7 @@ Right click on Tables -> Add new table
 Download SQL file
 Drag into visual studio
 Run/Execute
+Important: Refresh Server Explorer
 
 **Alternatively**
 Add a new table
@@ -234,4 +235,9 @@ private void DisplayCustomer() {
   }
 }
 
+// Brett's Connection String
+// replace the absolute path to the database .mdf filewith a relative path: |DataDirectory|
+                //@ means don't parse string for special characters and escapes
+                connection.ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Customers.mdf;Integrated Security=True";
+                //connection.ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='C:\_Xfer\COMP255\2020\2020 Demos\MJ\for Lab 08\Lab 08 - Demo 2 - Database Demo Part 2\Lab 08 - Demo 2 Database Demo\Customers.mdf';Integrated Security=True";
 ```
