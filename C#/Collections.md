@@ -109,8 +109,10 @@ List<Part> parts = new List<Part>();
 
 **indexOf** - searches for an item and returns the index of that item; if the item isn't in the list, indexOf returns -1.
 
+
 ===============================================================
 ///////////////////////////////////////////////////////////////
+
 
 # Notes from the Demo File
 ```c#
@@ -213,4 +215,19 @@ public string FullName { get => $"{FirstName} {LastName}";  } // no setter means
 
 // overriding ToString()
 public override string ToString() => $"{FullName} {Email}";
+```
+
+## Database Query to Create Table
+```sql
+CREATE TABLE [dbo].[CustomerAccounts]
+(
+	[AccountNumber] INT NOT NULL PRIMARY KEY,
+	[FirstName] NVARCHAR(50) NULL,
+	[LastName] NVARCHAR(50) NULL,
+	[Email] NVARCHAR(50) NULL,
+	[Phone] NVARCHAR(24) NULL,
+	[BalanceDate] DATETIME NULL,
+	[Balance] DECIMAL (19, 4) NULL
+)
+
 ```
