@@ -1,0 +1,16 @@
+Step 1: Understand pure functions.
+Step 2: Higher Order Functions.
+https://youtu.be/e-5obm1G_FY?t=575
+
+Step 3: Don't iterate. Instead, use map, reduce, filter.
+
+Step 4: Avoide mutability - don't change objects in place. Think of all data as immutable
+https://youtu.be/e-5obm1G_FY?t=891
+
+5. Persistent data structures
+
+"An introduction to functional programming" by Mary Rose Cook article.
+
+Possible solutions:
+https://youtu.be/Wo0qiGPSV-s?t=1280
+- mori 
